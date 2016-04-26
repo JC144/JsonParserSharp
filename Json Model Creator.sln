@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSonParser.SDK", "JSonParse\JSonParser.SDK.csproj", "{F6624BAA-B1B0-4723-B452-ED34285EFE81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSonParser.WPF", "JSonParser.WPF\JSonParser.WPF.csproj", "{48853AC9-7EED-4D66-A98D-5556CDE7198B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSonParser.CLI", "JSonParser.CLI\JSonParser.CLI.csproj", "{CE2EE630-54D7-407B-8F36-234BA7717A49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4Sample", "T4Sample\T4Sample.csproj", "{19F478DA-EDB2-411B-ABB7-4142DF5B1289}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://hollebecqm.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = JSonParser.WPF\\JSonParser.WPF.csproj
+		SccProjectName1 = JSonParser.WPF
+		SccLocalPath1 = JSonParser.WPF
+		SccProjectUniqueName2 = JSonParser.CLI\\JSonParser.CLI.csproj
+		SccProjectName2 = JSonParser.CLI
+		SccLocalPath2 = JSonParser.CLI
+		SccProjectUniqueName3 = T4Sample\\T4Sample.csproj
+		SccProjectName3 = T4Sample
+		SccLocalPath3 = T4Sample
+		SccProjectUniqueName4 = JSonParse\\JSonParser.SDK.csproj
+		SccProjectName4 = JSonParse
+		SccLocalPath4 = JSonParse
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F6624BAA-B1B0-4723-B452-ED34285EFE81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6624BAA-B1B0-4723-B452-ED34285EFE81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6624BAA-B1B0-4723-B452-ED34285EFE81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6624BAA-B1B0-4723-B452-ED34285EFE81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48853AC9-7EED-4D66-A98D-5556CDE7198B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48853AC9-7EED-4D66-A98D-5556CDE7198B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48853AC9-7EED-4D66-A98D-5556CDE7198B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48853AC9-7EED-4D66-A98D-5556CDE7198B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE2EE630-54D7-407B-8F36-234BA7717A49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE2EE630-54D7-407B-8F36-234BA7717A49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE2EE630-54D7-407B-8F36-234BA7717A49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE2EE630-54D7-407B-8F36-234BA7717A49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19F478DA-EDB2-411B-ABB7-4142DF5B1289}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19F478DA-EDB2-411B-ABB7-4142DF5B1289}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19F478DA-EDB2-411B-ABB7-4142DF5B1289}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19F478DA-EDB2-411B-ABB7-4142DF5B1289}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

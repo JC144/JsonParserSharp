@@ -1,0 +1,167 @@
+﻿<#@ template language="C#" #>
+<#@ output extension=".cs" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="$(TargetDir)JSonParser.SDK.dll" #>
+<#@import namespace="System"#>
+<#@import namespace="System.IO"#>
+<#@import namespace="System.Collections.Generic"#>
+<#@import namespace="System.Globalization"#>
+<#@import namespace="System.Linq"#>
+<#@import namespace="System.Text"#>
+<#@import namespace="System.Threading"#>
+<#@import namespace="System.Threading.Tasks"#>
+<#@import namespace="JSonParser.SDK"#>
+<#@import namespace="JSonParser.SDK.Utils"
+#><#	
+	Generate();
+#>
+
+<#+
+	private string _fileName;
+#>
+
+
+<#+private void Generate()
+{
+	StartNewFile(String.Format("{0}.cs",_context.RootClassName));
+	
+	string json = File.ReadAllText(_context.JsonPath);
+
+	JsonObject jsonObject = JsonParser.JsonDecode(json) as JsonObject;	
+	CreateClass(_context.RootClassName, jsonObject);
+
+	SaveOutput(_fileName);
+}#>
+
+<#+private void SaveOutput(string outputFileName)
+  {
+      string templateDirectory = _context.Output;
+      string outputFilePath = Path.Combine(templateDirectory, outputFileName);
+      File.WriteAllText(outputFilePath, this.GenerationEnvironment.ToString()); 
+
+      this.GenerationEnvironment.Remove(0, this.GenerationEnvironment.Length);
+	  Console.WriteLine("Wrote at :"+outputFilePath);
+  }
+#>
+
+<#+private void StartNewFile(string outputFileName){
+	   _fileName = outputFileName;
+   }#>
+
+<#+private void CreateClass(string className, JsonObject jsonObject)
+{	
+	WriteUsings();
+	WriteHeaderClass(className);
+		
+	Dictionary<string,JsonObject> subClassesToCreate = WriteContentClass(className, jsonObject);
+	
+	WriteFooterClass();
+	
+	GenerateSubClasses(subClassesToCreate);	
+}#>
+
+
+<#+private void GenerateSubClasses(Dictionary<string,JsonObject> subClasses)
+{	
+	if(subClasses!=null)
+	{
+		foreach(KeyValuePair<string, JsonObject> subClass in subClasses)
+		{				
+			if(!string.IsNullOrEmpty(subClass.Key))
+			{
+				SaveOutput(_fileName);
+				StartNewFile(String.Format("{0}.cs",subClass.Key));
+				CreateClass(subClass.Key, subClass.Value);				
+			}
+		}	
+	}
+}#>
+
+
+<#+private Dictionary<string,JsonObject> WriteContentClass(string className, JsonObject jsonObject)
+{
+	Dictionary<string,JsonObject> classesToCreate = new Dictionary<string,JsonObject>();
+	
+	if(jsonObject!=null && jsonObject.Children != null)
+	{
+		foreach (JsonNode node in jsonObject.Children)
+		{ 
+			string type = ModelCreator.GetNodeType(node);
+			string fieldName = String.Format("_{0}",node.Name.FirstLetterLower());
+			string propertyName = node.Name.FirstLetterUpper();			
+		
+			if(node.Value is JsonArray)
+			{
+				JsonArray array = ((JsonArray)node.Value);
+				if(array.Values.Any())
+				{
+					if(array.Values.First() is JsonObject)
+					{
+						classesToCreate.Add(type, (JsonObject)array.Values.First());
+					}
+				}
+				type = string.Format("IEnumerable<{0}>", type);	
+			}
+
+			CreateProperty(type, fieldName, propertyName);
+
+			if(node.Value is JsonObject)
+			{
+				classesToCreate.Add(type, (JsonObject)node.Value);
+			}		
+		}
+    }
+
+	return classesToCreate;
+}#>
+
+
+<#+private void WriteUsings()
+{#>
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+<#+}#>
+
+
+<#+private void WriteHeaderClass(string className)
+{#>
+
+namespace <#= _context.NamespaceName#>
+{
+
+	public partial class <#= className #>
+	{
+
+<#+}#>
+
+
+<#+private void WriteFooterClass()
+{#>
+	}
+}
+<#+}#>
+
+
+<#+	private void CreateProperty(string type, string fieldName, string propertyName)
+{#>
+		private <#= type #> <#= fieldName #>;
+		public <#= type #> <#= propertyName #>
+		{
+			get
+			{
+				return <#= fieldName #>;
+			}
+			set
+			{
+				<#= fieldName #> = value;
+			}
+		}
+
+<#+}#>
+

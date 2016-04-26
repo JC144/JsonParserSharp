@@ -1,0 +1,158 @@
+﻿<Controls:MetroWindow x:Class="JSonParser.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:custom="clr-namespace:JSonParser.WPF.CustomControls"
+        Title="JsonParser.WPF" Height="Auto" Width="Auto" MinWidth="768" MinHeight="535">
+    <Grid>
+        <custom:Toaster VerticalAlignment="Top" DataContext="{Binding MessagesViewModel}" MessageModel="{Binding Message}" Panel.ZIndex="2000" />
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="12"/>
+        </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel
+            Grid.Row="0" Grid.Column="0"
+            Orientation="Horizontal"
+            Margin="12,6,0,0">
+            <TextBlock
+                FontSize="28"
+                Text="JSON"/>
+            <Button Style="{DynamicResource MetroCircleButtonStyle}" 
+                    Click="Open_Clicked"
+                    Margin="6,0,0,0"
+                    BorderBrush="Black"
+                    BorderThickness="1"
+                    Width="40" Height="40">
+                <Rectangle Width="18" Height="14">
+                    <Rectangle.Fill>
+                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_folder_open}" />
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Button>
+            <Button Style="{DynamicResource MetroCircleButtonStyle}"  
+                    Click="Paste_Clicked"
+                    Margin="0,0,0,0"
+                    BorderBrush="Black"
+                    BorderThickness="1"
+                    Width="40" Height="40">
+                <Rectangle Width="18" Height="17">
+                    <Rectangle.Fill>
+                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_clipboard_paste}" />
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Button>
+        </StackPanel>
+
+        <StackPanel
+            Grid.Row="0" Grid.Column="1"
+            Orientation="Horizontal"
+            Margin="12,6,0,0">
+            <TextBlock
+                FontSize="28"
+                Text="C#"/>
+            <Button Style="{DynamicResource MetroCircleButtonStyle}" 
+                    IsEnabled="{Binding IsSaveEnable}"
+                    Click="Save_Clicked"
+                    Margin="6,0,0,0"
+                    BorderBrush="Black"
+                    BorderThickness="1"
+                    Width="40" Height="40">
+                <Rectangle Width="18" Height="17">
+                    <Rectangle.Fill>
+                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_save}" />
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Button>
+            <Button Style="{DynamicResource MetroCircleButtonStyle}" 
+                    IsEnabled="{Binding IsCopyEnable}"
+                    Click="Copy_Clicked"
+                    Margin="0,0,0,0"
+                    BorderBrush="Black"
+                    BorderThickness="1"
+                    Width="40" Height="40">
+                <Rectangle Width="18" Height="17">
+                    <Rectangle.Fill>
+                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_page_copy}" />
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Button>
+        </StackPanel>
+        <ComboBox
+            x:Name="Cb_GeneratedModels"
+            ItemsSource="{Binding GeneratedClasses, Mode=TwoWay}"
+            SelectedItem="{Binding SelectedClass, Mode=TwoWay}"
+            DisplayMemberPath="Name"
+            Margin="12,6,12,0"
+            Grid.Row="1" Grid.Column="1"/>
+
+        <TextBox
+            x:Name="TxtBox_Json"
+            Grid.Row="2" Grid.Column="0"
+            Margin="12,-1,12,6"
+            AcceptsReturn="True"
+            IsReadOnly="False"
+            Text="{Binding Json, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            />
+        <TextBox
+            x:Name="TxtBox_CSharp"
+            Grid.Row="2" Grid.Column="1"
+            Margin="12,-1,12,6"
+            AcceptsReturn="True"
+            IsReadOnly="True"
+            Text="{Binding SelectedClass.Content, Mode=TwoWay}"/>
+
+        <Grid
+            Grid.Row="1" Grid.Column="0"            
+            Margin="12,6,12,0"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Namespace:"
+                       VerticalAlignment="Center"
+                       Margin="0,0,6,0"/>
+            <TextBox x:Name="Txtbox_Namespace" 
+                     Grid.Column="1"
+                     VerticalAlignment="Center"/>
+            <TextBlock Text="ClassName:"
+                       Grid.Column="2"
+                       VerticalAlignment="Center"
+                       Margin="6,0"/>
+            <TextBox x:Name="Txtbox_Classname"
+                     Grid.Column="3"
+                     VerticalAlignment="Center"/>
+        </Grid>
+
+        <Button Style="{DynamicResource MetroCircleButtonStyle}"  
+                IsEnabled="{Binding IsParsingAvailable}"
+                Grid.RowSpan="3"
+                Grid.ColumnSpan="3"
+                Click="Parse_Clicked"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                    Margin="0,0,0,0"
+                    BorderBrush="LightBlue"
+                    Background="LightBlue"
+                    BorderThickness="1"
+                    Width="80" Height="80">
+            <Rectangle Width="18" Height="17" >
+                <Rectangle.Fill>
+                    <VisualBrush Stretch="Fill" Visual="{StaticResource play}" />
+                </Rectangle.Fill>
+            </Rectangle>
+        </Button>
+
+    </Grid>
+    </Grid>
+</Controls:MetroWindow>
