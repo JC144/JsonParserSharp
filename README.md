@@ -22,6 +22,6 @@ Sometimes, you want more than just a basic class. This T4 project allow customiz
   
   
 
-Created with love by [@mhollebecq](https://twitter.com/mhollebecq) && [@jcvasselon](https://twitter.com/jcvasselon) 
-*Palm oil free*
-*Gluten free*
+Created with love by [@mhollebecq](https://twitter.com/mhollebecq) && [@jcvasselon](https://twitter.com/jcvasselon)   
+*Palm oil free*  
+*Gluten free*  
