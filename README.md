@@ -19,3 +19,9 @@ A simple GUI in WPF to manage your json and output code. Easy to use, not a lot 
 
 ### JSonParser.T4
 Sometimes, you want more than just a basic class. This T4 project allow customizations of the output. For example, if you want to add a RaisePropertyChanged or some special attributes, you can use this T4 and add your customizations.
+  
+  
+
+Created with love by [@mhollebecq](https://twitter.com/mhollebecq) && [@jcvasselon](https://twitter.com/jcvasselon) 
+*Palm oil free*
+*Gluten free*
